@@ -1,4 +1,3 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
   TableBody,
@@ -9,18 +8,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Suspense } from "react";
 
 // Simulate SSR instead of SSG
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 export default async function Page() {
   return (
     <div>
       <h1 className="text-4xl font-bold tracking-tighter">Dashboard</h1>
-      <Suspense fallback={<TableDemoSkeleton />}>
-        <TableDemo />
-      </Suspense>
+
+      <TableDemo />
     </div>
   );
 }
@@ -94,46 +91,6 @@ async function TableDemo() {
             <TableCell>{invoice.paymentStatus}</TableCell>
             <TableCell>{invoice.paymentMethod}</TableCell>
             <TableCell className="text-right">{invoice.totalAmount}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
-  );
-}
-
-function TableDemoSkeleton() {
-  return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">
-              <Skeleton className="h-4 w-[70px]" />
-            </TableCell>
-            <TableCell>
-              <Skeleton className="h-4 w-[70px]" />
-            </TableCell>
-            <TableCell>
-              <Skeleton className="h-4 w-[150px]" />
-            </TableCell>
-            <TableCell className="text-right flex justify-end">
-              <Skeleton className="h-4 w-[50px]" />
-            </TableCell>
           </TableRow>
         ))}
       </TableBody>
